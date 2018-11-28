@@ -69,6 +69,9 @@ RUN ${PIP} install \
     Cython \    
     jhpy \
     jupyter \
+    jupyterlab \
+    jupyter_contrib_nbextensions \
+    jupyter_nbextensions_configurator \  
     matplotlib \ 
     numpy \
     pandas \
@@ -76,7 +79,7 @@ RUN ${PIP} install \
     pyrfr \
     pyyaml \
     seaborn \ 
-    sklearn 
+    sklearn
 
 ARG TF_PACKAGE=tensorflow-gpu
 RUN ${PIP} install ${TF_PACKAGE}
@@ -86,6 +89,9 @@ RUN ${PIP} install keras --no-deps
 COPY requirements.txt /requirements.txt
 
 RUN ${PIP} install -r /requirements.txt
+
+RUN jupyter contrib nbextension install --user
+RUN jupyter nbextensions_configurator enable --user
 
 RUN ["mkdir", "notebooks"]
 COPY conf/.jupyter /root/.jupyter
