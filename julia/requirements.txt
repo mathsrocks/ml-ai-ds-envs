@@ -55,7 +55,6 @@ py
 Pygments
 pylint
 pymc3
-pyod
 pyparsing
 pyrsistent
 pytest
